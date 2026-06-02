@@ -19,7 +19,8 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/', (req, res) => {
+router.post('/:id', (req, res) => {
+    const { id } = req.params;
     const { name, breed } = req.body || {};
 
     if (!name) return res.status(418).send({ message: "Cat must have a name" });
