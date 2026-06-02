@@ -1,0 +1,12 @@
+{
+  "name": "nodejs_practice",
+  "version": "1.0.0",
+  "description": "Node.js practice for internship",
+  "license": "ISC",
+  "author": "James Harrison",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
