@@ -1,30 +1,19 @@
-const express = require('express');
-const app = express();
-const PORT = 8080;
+const express = require('express'); // import express framework
+const app = express(); // creates an express application
+const PORT = 3000; // port number 
 
+const dogRoutes = require('./routes/dogs') // loads module in directory
+const catRoutes = require('./routes/cats')
+
+//middleware - intercepts http requests and parses to json
 app.use( express.json())
 
-app.get('/dog', (req, res) => {
-res.status(200).send({
-    breed: 'Hungarian Vizsla',
-    weight: '25kg'
-})
-});
+//any request starting with the prefix will be routed to object referenced
+app.use('/dogs', dogRoutes.default || dogRoutes);
+app.use('/cats', catRoutes.default || catRoutes);
 
-app.post('/dog/:id', (req, res) => {
-    const { id } = req.params;
-    const { name } = req.body || {};
-
-    if (!name) {
-        return res.status(418).send({ message: 'We need a dog name' });
-    }
-
-    res.send({
-        breed: `Hungarian Vizsla called ${name} with an id of ${id}`,
-    });
-})
-
+//initialise server and wait for incoming requests.
 app.listen(
     PORT, () => console.log(`server is listening on http://localhost:${PORT}`)
-)
+);
 
